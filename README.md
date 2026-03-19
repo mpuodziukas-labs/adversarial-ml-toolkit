@@ -1,8 +1,26 @@
 # adversarial-ml-toolkit
 
-Production adversarial ML toolkit. FGSM. PGD. Prompt injection. Data poisoning. OWASP LLM Top 10. Not a toy — tested against real attack patterns.
+**Production-grade adversarial ML toolkit. OWASP LLM Top 10 coverage. Used for red-team audits of LLM-integrated financial systems.**
+
+FGSM. PGD. Prompt injection. Data poisoning. Model extraction. Token smuggling. Zero-width attacks. Not a toy — tested against real attack patterns.
 
 [![CI](https://github.com/mpuodziukas-labs/adversarial-ml-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/mpuodziukas-labs/adversarial-ml-toolkit/actions/workflows/ci.yml)
+
+---
+
+## Toolkit Modules
+
+Three production detection engines in `toolkit/`:
+
+| Module | Purpose | OWASP Coverage |
+|---|---|---|
+| `prompt_injection_scanner.py` | 20-category injection detection, confidence scoring, OWASP mapping | LLM01, LLM02, LLM05, LLM06, LLM07, LLM09, LLM10 |
+| `model_extraction_detector.py` | Session-level model-stealing and membership inference detection | LLM02, LLM10 |
+| `adversarial_validator.py` | Token smuggling, BiDi Trojan Source, homoglyphs, output bypass | LLM01, LLM04, LLM05, LLM08 |
+
+Zero dependencies. Pure Python stdlib. Drop-in middleware for any LLM API gateway.
+
+See [`OWASP_LLM_MAPPING.md`](./OWASP_LLM_MAPPING.md) for full coverage matrix.
 
 ---
 
